@@ -29,6 +29,12 @@ public class App
 		return isValidPhoneNumber;
 	}
 	
+	public boolean validatePassword(String password) {
+		String passwordPattern ="^[\\w\\@\\.\\_\\*\\$]{8,}$";
+		boolean isValidPassword=password.matches(passwordPattern);
+		return isValidPassword;
+	}
+	
     public static void main( String[] args )
     {
     	App userObject=new App();
@@ -49,10 +55,15 @@ public class App
 //         boolean satisfiesEmail=userObject.validateEmail(email);
 //         System.out.println("Satisfies Email : "+satisfiesEmail);
          
-         System.out.println("Enter the Phone Number : ");
-         String phoneNumber=sc.nextLine();
-         boolean satisfiesPhoneNumber=userObject.validatePhoneNumber(phoneNumber);
-         System.out.println("Satisfies Phone Number : "+satisfiesPhoneNumber);
+//         System.out.println("Enter the Phone Number : ");
+//         String phoneNumber=sc.nextLine();
+//         boolean satisfiesPhoneNumber=userObject.validatePhoneNumber(phoneNumber);
+//         System.out.println("Satisfies Phone Number : "+satisfiesPhoneNumber);
+         
+         System.out.println("Enter the Password : ");
+         String password=sc.next();
+         boolean satisfiesPassword=userObject.validatePassword(password);
+         System.out.println("Satisfies Phone Number : "+satisfiesPassword);
          
     }
 }
