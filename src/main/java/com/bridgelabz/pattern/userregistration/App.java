@@ -16,6 +16,12 @@ public class App
 		boolean isValidLastName=lastName.matches(lastNamePattern);
 		return isValidLastName;
 	}
+	
+	public boolean validateEmail(String email) {
+		String emailPattern ="^[a-z0-9]+(([\\._+-][a-z0-9]+)?)\\@[a-z0-9]+\\.(([a-z]{2,4})(\\.[a-z]{2,4})?)$";
+		boolean isValidEmail=email.matches(emailPattern);
+		return isValidEmail;
+	}
     public static void main( String[] args )
     {
     	App userObject=new App();
@@ -26,9 +32,14 @@ public class App
 //    	boolean satisfiesFirstName=userObject.validateFirstName(firstName);
 //    	System.out.println("Satisfies First Name : "+satisfiesFirstName);
     	
-    	System.out.println("Enter Last Name : ");
-    	String lastName=sc.next();
-    	boolean satisfiesLastName=userObject.validateLastName(lastName);
-    	System.out.println("Satisfies Last Name : "+satisfiesLastName);
+//    	System.out.println("Enter Last Name : ");
+//    	String lastName=sc.next();
+//    	boolean satisfiesLastName=userObject.validateLastName(lastName);
+//    	System.out.println("Satisfies Last Name : "+satisfiesLastName);
+    	
+    	 System.out.println("Enter the Email : ");
+         String email=sc.next();
+         boolean satisfiesEmail=userObject.validateEmail(email);
+         System.out.println("Satisfies Email : "+satisfiesEmail);
     }
 }
