@@ -30,7 +30,7 @@ public class App
 	}
 	
 	public boolean validatePassword(String password) {
-		String passwordPattern ="^(?=.*[A-Z])(?=.*\\d)[\\w\\@\\.\\_\\*\\$]{8,}$";
+		String passwordPattern ="^(?=.*[A-Z])(?=.*\\d)([a-zA-Z0-9]*[!@#$%^&*|'<>.-^*()%+]{1}[a-zA-Z0-9]*){8,}$";
 		boolean isValidPassword=password.matches(passwordPattern);
 		return isValidPassword;
 	}
