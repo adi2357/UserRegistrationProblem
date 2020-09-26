@@ -22,6 +22,13 @@ public class App
 		boolean isValidEmail=email.matches(emailPattern);
 		return isValidEmail;
 	}
+	
+	public boolean validatePhoneNumber(String phoneNumber) {
+		String phoneNumberPattern ="^([1-9]{1}\\d{1})\\s{1}([1-9]{1}\\d{9})$";
+		boolean isValidPhoneNumber=phoneNumber.matches(phoneNumberPattern);
+		return isValidPhoneNumber;
+	}
+	
     public static void main( String[] args )
     {
     	App userObject=new App();
@@ -37,9 +44,15 @@ public class App
 //    	boolean satisfiesLastName=userObject.validateLastName(lastName);
 //    	System.out.println("Satisfies Last Name : "+satisfiesLastName);
     	
-    	 System.out.println("Enter the Email : ");
-         String email=sc.next();
-         boolean satisfiesEmail=userObject.validateEmail(email);
-         System.out.println("Satisfies Email : "+satisfiesEmail);
+//    	 System.out.println("Enter the Email : ");
+//         String email=sc.next();
+//         boolean satisfiesEmail=userObject.validateEmail(email);
+//         System.out.println("Satisfies Email : "+satisfiesEmail);
+         
+         System.out.println("Enter the Phone Number : ");
+         String phoneNumber=sc.nextLine();
+         boolean satisfiesPhoneNumber=userObject.validatePhoneNumber(phoneNumber);
+         System.out.println("Satisfies Phone Number : "+satisfiesPhoneNumber);
+         
     }
 }
