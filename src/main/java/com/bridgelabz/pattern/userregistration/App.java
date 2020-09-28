@@ -5,17 +5,17 @@ import java.util.regex.Pattern;
 public class App 
 {
 	
-	public boolean validateFirstName(String firstName) {
-		String firstNamePattern ="^[A-Z]{1}[a-zA-Z]{2,}";
-		boolean isValidFirstName=firstName.matches(firstNamePattern);
-		return isValidFirstName;
-	}
-	
-	public boolean validateLastName(String lastName) {
-		String lastNamePattern ="^[A-Z]{1}[a-zA-Z]{2,}";
-		boolean isValidLastName=lastName.matches(lastNamePattern);
-		return isValidLastName;
-	}
+//	public boolean validateFirstName(String firstName) {
+//		String firstNamePattern ="^[A-Z]{1}[a-zA-Z]{2,}";
+//		boolean isValidFirstName=firstName.matches(firstNamePattern);
+//		return isValidFirstName;
+//	}
+//	
+//	public boolean validateLastName(String lastName) {
+//		String lastNamePattern ="^[A-Z]{1}[a-zA-Z]{2,}";
+//		boolean isValidLastName=lastName.matches(lastNamePattern);
+//		return isValidLastName;
+//	}
 	
 	public boolean validateEmail(String email) {
 		String emailPattern ="^[a-z0-9]+(([\\._+-][a-z0-9]+)?)\\@[a-z0-9]+\\.(([a-z]{2,4})(\\.[a-z]{2,4})?)$";
@@ -23,17 +23,17 @@ public class App
 		return isValidEmail;
 	}
 	
-	public boolean validatePhoneNumber(String phoneNumber) {
-		String phoneNumberPattern ="^([1-9]{1}\\d{1})\\s{1}([1-9]{1}\\d{9})$";
-		boolean isValidPhoneNumber=phoneNumber.matches(phoneNumberPattern);
-		return isValidPhoneNumber;
-	}
-	
-	public boolean validatePassword(String password) {
-		String passwordPattern ="((?=.*[A-Z])(?=.*\\d)(?=.*[a-z])([a-zA-Z0-9]*[!@#$%^&*|'<>.-^*()%+]{1}[a-zA-Z0-9]*).{8,})";
-		boolean isValidPassword=password.matches(passwordPattern);
-		return isValidPassword;		
-	}
+//	public boolean validatePhoneNumber(String phoneNumber) {
+//		String phoneNumberPattern ="^([1-9]{1}\\d{1})\\s{1}([1-9]{1}\\d{9})$";
+//		boolean isValidPhoneNumber=phoneNumber.matches(phoneNumberPattern);
+//		return isValidPhoneNumber;
+//	}
+//	
+//	public boolean validatePassword(String password) {
+//		String passwordPattern ="((?=.*[A-Z])(?=.*\\d)(?=.*[a-z])([a-zA-Z0-9]*[!@#$%^&*|'<>.-^*()%+]{1}[a-zA-Z0-9]*).{8,})";
+//		boolean isValidPassword=password.matches(passwordPattern);
+//		return isValidPassword;		
+//	}
 	
 //    public static void main( String[] args )
 //    {
@@ -90,12 +90,11 @@ public class App
          
 //    }
 
-	public String analyzeMood(String msg) {
-		if(msg.toLowerCase().contains("happy"))
-			return "HAPPY";
-		else if(msg.toLowerCase().contains("sad"))
-			return "SAD";
-		return null;
-		
-	}
+//	public String analyzeMood(String msg) {
+//		if(msg.toLowerCase().contains("happy"))
+//			return "HAPPY";
+//		else if(msg.toLowerCase().contains("sad"))
+//			return "SAD";
+//		return null;		
+//	}
 }
