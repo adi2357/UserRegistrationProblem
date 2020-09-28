@@ -17,14 +17,10 @@ public class App
 		return isValidLastName;
 	}
 	
-	public void validateEmail(String email) {
+	public boolean validateEmail(String email) {
 		String emailPattern ="^[a-z0-9]+(([\\._+-][a-z0-9]+)?)\\@[a-z0-9]+\\.(([a-z]{2,4})(\\.[a-z]{2,4})?)$";
 		boolean isValidEmail=email.matches(emailPattern);
-		if(isValidEmail)
-			System.out.print(email+" is VALID");
-		else
-			System.out.print(email+" is INVALID");
-		System.out.println();
+		return isValidEmail;
 	}
 	
 	public boolean validatePhoneNumber(String phoneNumber) {
@@ -34,17 +30,17 @@ public class App
 	}
 	
 	public boolean validatePassword(String password) {
-		String passwordPattern ="^(?=.*[A-Z])(?=.*\\d)([a-zA-Z0-9]*[!@#$%^&*|'<>.-^*()%+]{1}[a-zA-Z0-9]*){8,}$";
+		String passwordPattern ="((?=.*[A-Z])(?=.*\\d)(?=.*[a-z])([a-zA-Z0-9]*[!@#$%^&*|'<>.-^*()%+]{1}[a-zA-Z0-9]*).{8,})";
 		boolean isValidPassword=password.matches(passwordPattern);
 		return isValidPassword;		
 	}
 	
-    public static void main( String[] args )
-    {
-    	App userObject=new App();
-    	Scanner sc=new Scanner(System.in);
+//    public static void main( String[] args )
+//    {
+//    	App userObject=new App();
+//    	Scanner sc=new Scanner(System.in);
     	    	
-//    	System.out.println("Enter First Name : ");
+//   	System.out.println("Enter First Name : ");
 //    	String firstName=sc.next();
 //    	boolean satisfiesFirstName=userObject.validateFirstName(firstName);
 //    	System.out.println("Satisfies First Name : "+satisfiesFirstName);
@@ -67,30 +63,39 @@ public class App
 //      System.out.println("Enter the Password : ");
 //      String password=sc.next();
 //      boolean satisfiesPassword=userObject.validatePassword(password);
-//      System.out.println("Satisfies Phone Number : "+satisfiesPassword);
+//      System.out.println("Satisfies Password : "+satisfiesPassword);
     	
-    	userObject.validateEmail("abc@yahoo.com");
-		userObject.validateEmail("abc-100@yahoo.com");
-		userObject.validateEmail("abc.100@yahoo.com");
-		userObject.validateEmail("abc111@abc.com");
-		userObject.validateEmail("abc-100@abc.net");
-		userObject.validateEmail("abc.100@abc.com.au");
-		userObject.validateEmail("abc@1.com");
-		userObject.validateEmail("abc@gmail.com.com");
-		userObject.validateEmail("abc+100@gmail.com");
-		userObject.validateEmail("abc");
-		userObject.validateEmail("abc@.com.my");
-		userObject.validateEmail("abc123@gmail.a");
-		userObject.validateEmail("abc123@.com");
-		userObject.validateEmail("abc123@.com.com");
-		userObject.validateEmail(".abc@abc.com");
-		userObject.validateEmail("abc()*@gmail.com");
-		userObject.validateEmail("abc@%*.com");
-		userObject.validateEmail("abc..2002@gmail.com");
-		userObject.validateEmail("abc.@gmail.com");
-		userObject.validateEmail("abc@abc@gmail.com");
-		userObject.validateEmail("abc@gmail.com.1a");
-		userObject.validateEmail("abc@gmail.com.aa.au");   	
+//    	userObject.validateEmail("abc@yahoo.com");
+//		userObject.validateEmail("abc-100@yahoo.com");
+//		userObject.validateEmail("abc.100@yahoo.com");
+//		userObject.validateEmail("abc111@abc.com");
+//		userObject.validateEmail("abc-100@abc.net");
+//		userObject.validateEmail("abc.100@abc.com.au");
+//		userObject.validateEmail("abc@1.com");
+//		userObject.validateEmail("abc@gmail.com.com");
+//		userObject.validateEmail("abc+100@gmail.com");
+//		userObject.validateEmail("abc");
+//		userObject.validateEmail("abc@.com.my");
+//		userObject.validateEmail("abc123@gmail.a");
+//		userObject.validateEmail("abc123@.com");
+//		userObject.validateEmail("abc123@.com.com");
+//		userObject.validateEmail(".abc@abc.com");
+//		userObject.validateEmail("abc()*@gmail.com");
+//		userObject.validateEmail("abc@%*.com");
+//		userObject.validateEmail("abc..2002@gmail.com");
+//		userObject.validateEmail("abc.@gmail.com");
+//		userObject.validateEmail("abc@abc@gmail.com");
+//		userObject.validateEmail("abc@gmail.com.1a");
+//		userObject.validateEmail("abc@gmail.com.aa.au");   	
          
-    }
+//    }
+
+	public String analyzeMood(String msg) {
+		if(msg.toLowerCase().contains("happy"))
+			return "HAPPY";
+		else if(msg.toLowerCase().contains("sad"))
+			return "SAD";
+		return null;
+		
+	}
 }
