@@ -5,130 +5,107 @@ import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Collection;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import junit.framework.Assert;
 
-@RunWith(Parameterized.class)
+
 public class AppTest {
-	private String email;
-	private boolean isEmailValid;
+	
 	private App userRegistrationObject;
 
 	@Before
 	public void initialize() {
 		userRegistrationObject = new App();
 	}
-
-	public AppTest(String email, boolean isEmailValid) {
-		this.email = email;
-		this.isEmailValid = isEmailValid;
-	}
 	
-	@Parameterized.Parameters
-	public static Collection emailTestList() {
-		 return Arrays.asList(new Object[][]{
-			   {"abc@yahoo.com",true},
-			   {"abc@.com",false},
-			   {"abc.100@yahoo.com",true},
-			   {"ab+100@yahoo.com",true},
-			   {"abc@.com",false},
-			   {"abc..2002@gmail.com",false},
-			   {".abc123@abc.com",false},
-			   {"ab+100@yahoo.com",true},
-			   {"abc+100@gmail.com",true},
-			   {"abc-100@abc.net",true},
-			   {"abc@gmail.com.com",true},
-			   {"abc@gmail.a",false},
-			   {"abc()*@gmail.com",false},
-			   {"abc@1.com",true},
-			   {"abc.100@abc.com.au", true},
-			   {"abc..2002@gmail.com",false},
-			   {"abc.@gmail.com",false},
-			   {"abc@gmail.com.1a",false},
-			   {"abc@%*.com",false},
-			   {"abc()*@gmail.com",false},
-			   {"abcd..2002@gmail.com",false}			   
-			   });	
-	}
-
-//MOOD TEST    
-//	@Test
-//	public void givenMoodWhenHappyReturnTrue() {
-//		assertEquals("HAPPY", userRegistrationObject.analyzeMood("I am Happy"));
-//	}
-//
-//	@Test
-//	public void givenMoodWhenSadReturnTrue() {
-//		assertEquals("SAD", userRegistrationObject.analyzeMood("I am Sad"));
-//	}
-
 //FIRST NAME TEST    
-//	@Test
-//	public void givenFirstNameWhenValidReturnTrue() {
-//		assertTrue(userRegistrationObject.validateFirstName("Aditya"));
-//		assertTrue(userRegistrationObject.validateFirstName("Joy"));
-//	}
-//
-//	@Test
-//	public void givenFirstNameWhenInvalidReturnFalse() {
-//		assertFalse(userRegistrationObject.validateFirstName("aditya"));
-//		assertFalse(userRegistrationObject.validateFirstName("Jo"));
-//	}
+	@Test
+	public void givenFirstNameWhenValidReturnTrue()throws UserRegistrationException {
+		try {
+			assertTrue(userRegistrationObject.isValidateFirstName("Aditya"));
+			assertTrue(userRegistrationObject.isValidateFirstName("Joy"));
+			assertTrue(userRegistrationObject.isValidateFirstName("aditya"));
+			assertTrue(userRegistrationObject.isValidateFirstName("Jo"));
+		} catch (UserRegistrationException e) {
+			System.out.println("Exception Type : "+e.type+" | Message : "+e.getMessage());
+		}
+	}
 
 //LAST NAME TEST    
-//	@Test
-//	public void givenLastNameWhenValidReturnTrue() {
-//		assertTrue(userRegistrationObject.validateLastName("Verma"));
-//		assertTrue(userRegistrationObject.validateLastName("Layman"));
-//	}
-//
-//	@Test
-//	public void givenLastNameWhenInvalidReturnFalse() {
-//		assertFalse(userRegistrationObject.validateLastName("verma"));
-//		assertFalse(userRegistrationObject.validateLastName("Li"));
-//	}
+	@Test
+	public void givenLastNameWhenValidReturnTrue()throws UserRegistrationException {
+		try {
+			assertTrue(userRegistrationObject.isValidateLastName("Verma"));
+			assertTrue(userRegistrationObject.isValidateLastName("Layman"));
+			assertTrue(userRegistrationObject.isValidateLastName("verma"));
+			assertTrue(userRegistrationObject.isValidateLastName("Li"));
+		} catch (UserRegistrationException e) {
+			System.out.println("Exception Type : "+e.type+" | Message : "+e.getMessage());
+		}
+	}	
 
 //EMAIL TEST    
 	@Test
-	public void givenEmailListReturnResult() {
-		System.out.println(email+" is Valid : "+isEmailValid);
-		assertEquals(isEmailValid, userRegistrationObject.validateEmail(email));
+	public void givenEmailWhenValidReturnTrue()throws UserRegistrationException {
+		try {
+			assertTrue(userRegistrationObject.isValidateEmail("abc@yahoo.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc-100@yahoo.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc.100@yahoo.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc111@abc.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc-100@abc.net"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc.100@abc.com.au"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@1.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@gmail.com.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc+100@gmail.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@.com.my"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc123@gmail.a"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc123@.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc123@.com.com"));
+			assertTrue(userRegistrationObject.isValidateEmail(".abc@abc.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc()*@gmail.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@%*.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc..2002@gmail.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc.@gmail.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@abc@gmail.com"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@gmail.com.1a"));
+			assertTrue(userRegistrationObject.isValidateEmail("abc@gmail.com.aa.au"));
+		}
+		catch (UserRegistrationException e) {
+			System.out.println("Exception Type : "+e.type+" | Message : "+e.getMessage());
+		}		
 	}
 
 //PHONE NUMBER TEST
-//	@Test
-//	public void givenPhoneNumberWhenValidReturnTrue() {
-//		assertTrue(userRegistrationObject.validatePhoneNumber("91 8989036140"));
-//		assertTrue(userRegistrationObject.validatePhoneNumber("40 1046793214"));
-//	}
-//
-//	@Test
-//	public void givenPhoneNumberWhenInvalidReturnFalse() {
-//		assertFalse(userRegistrationObject.validatePhoneNumber("01 8978974656"));
-//		assertFalse(userRegistrationObject.validatePhoneNumber("11 789655213"));
-//		assertFalse(userRegistrationObject.validatePhoneNumber("99  4568795542"));
-//		assertFalse(userRegistrationObject.validatePhoneNumber("91 0946793214"));
-//	}
+	@Test
+	public void givenPhoneNumberWhenValidReturnTrue()throws UserRegistrationException {
+		try {
+			assertTrue(userRegistrationObject.isValidatePhoneNumber("91 8989036140"));
+			assertTrue(userRegistrationObject.isValidatePhoneNumber("40 1046793214"));
+			assertTrue(userRegistrationObject.isValidatePhoneNumber("01 8978974656"));
+			assertTrue(userRegistrationObject.isValidatePhoneNumber("11 789655213"));
+			assertTrue(userRegistrationObject.isValidatePhoneNumber("99  4568795542"));
+			assertTrue(userRegistrationObject.isValidatePhoneNumber("91 0946793214"));
+		} catch (UserRegistrationException e) {
+			System.out.println("Exception Type : "+e.type+" | Message : "+e.getMessage());
+		}
+	}
 
 //PASSWORD TEST
-//	@Test
-//	public void givenPasswordWhenValidReturnTrue() {
-//		assertTrue(userRegistrationObject.validatePassword("ThisIsMy@1stPassword"));
-//		assertTrue(userRegistrationObject.validatePassword("Validpassword#test123"));
-//	}
-//
-//	@Test
-//	public void givenPasswordWhenInvalidReturnFalse() {
-//		assertFalse(userRegistrationObject.validatePassword("Short1@"));
-//		assertFalse(userRegistrationObject.validatePassword("Sho1@@"));
-//		assertFalse(userRegistrationObject.validatePassword("onlylowercase123"));
-//		assertFalse(userRegistrationObject.validatePassword("ONLYUPPERCASE123"));
-//		assertFalse(userRegistrationObject.validatePassword("UPPERCASElowercase"));
-//
-//	}
+	@Test
+	public void givenPasswordWhenValidReturnTrue()throws UserRegistrationException {
+		try {
+			assertTrue(userRegistrationObject.isValidatePassword("ThisIsMy@1stPassword"));
+			assertTrue(userRegistrationObject.isValidatePassword("Validpassword#test123"));
+			assertTrue(userRegistrationObject.isValidatePassword("Short1@"));
+			assertTrue(userRegistrationObject.isValidatePassword("Sho1@@"));
+			assertTrue(userRegistrationObject.isValidatePassword("onlylowercase123"));
+			assertTrue(userRegistrationObject.isValidatePassword("ONLYUPPERCASE123"));
+			assertTrue(userRegistrationObject.isValidatePassword("UPPERCASElowercase"));
+		} catch (UserRegistrationException e) {
+			System.out.println("Exception Type : "+e.type+" | Message : "+e.getMessage());
+		}
+	}
 }

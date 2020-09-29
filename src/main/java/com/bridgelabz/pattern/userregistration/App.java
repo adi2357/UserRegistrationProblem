@@ -1,95 +1,65 @@
 package com.bridgelabz.pattern.userregistration;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class App 
-{
-	
-//	public boolean validateFirstName(String firstName) {
-//		String firstNamePattern ="^[A-Z]{1}[a-zA-Z]{2,}";
-//		boolean isValidFirstName=firstName.matches(firstNamePattern);
-//		return isValidFirstName;
-//	}
-//	
-//	public boolean validateLastName(String lastName) {
-//		String lastNamePattern ="^[A-Z]{1}[a-zA-Z]{2,}";
-//		boolean isValidLastName=lastName.matches(lastNamePattern);
-//		return isValidLastName;
-//	}
-	
-	public boolean validateEmail(String email) {
-		String emailPattern ="^[a-z0-9]+(([\\._+-][a-z0-9]+)?)\\@[a-z0-9]+\\.(([a-z]{2,4})(\\.[a-z]{2,4})?)$";
-		boolean isValidEmail=email.matches(emailPattern);
-		return isValidEmail;
-	}
-	
-//	public boolean validatePhoneNumber(String phoneNumber) {
-//		String phoneNumberPattern ="^([1-9]{1}\\d{1})\\s{1}([1-9]{1}\\d{9})$";
-//		boolean isValidPhoneNumber=phoneNumber.matches(phoneNumberPattern);
-//		return isValidPhoneNumber;
-//	}
-//	
-//	public boolean validatePassword(String password) {
-//		String passwordPattern ="((?=.*[A-Z])(?=.*\\d)(?=.*[a-z])([a-zA-Z0-9]*[!@#$%^&*|'<>.-^*()%+]{1}[a-zA-Z0-9]*).{8,})";
-//		boolean isValidPassword=password.matches(passwordPattern);
-//		return isValidPassword;		
-//	}
-	
-//    public static void main( String[] args )
-//    {
-//    	App userObject=new App();
-//    	Scanner sc=new Scanner(System.in);
-    	    	
-//   	System.out.println("Enter First Name : ");
-//    	String firstName=sc.next();
-//    	boolean satisfiesFirstName=userObject.validateFirstName(firstName);
-//    	System.out.println("Satisfies First Name : "+satisfiesFirstName);
-    	
-//    	System.out.println("Enter Last Name : ");
-//    	String lastName=sc.next();
-//    	boolean satisfiesLastName=userObject.validateLastName(lastName);
-//    	System.out.println("Satisfies Last Name : "+satisfiesLastName);
-    	
-//    	System.out.println("Enter the Email : ");
-//      String email=sc.next();
-//      boolean satisfiesEmail=userObject.validateEmail(email);
-//      System.out.println("Satisfies Email : "+satisfiesEmail);
-         
-//      System.out.println("Enter the Phone Number : ");
-//      String phoneNumber=sc.nextLine();
-//      boolean satisfiesPhoneNumber=userObject.validatePhoneNumber(phoneNumber);
-//      System.out.println("Satisfies Phone Number : "+satisfiesPhoneNumber);
-         
-//      System.out.println("Enter the Password : ");
-//      String password=sc.next();
-//      boolean satisfiesPassword=userObject.validatePassword(password);
-//      System.out.println("Satisfies Password : "+satisfiesPassword);
-    	
-//    	userObject.validateEmail("abc@yahoo.com");
-//		userObject.validateEmail("abc-100@yahoo.com");
-//		userObject.validateEmail("abc.100@yahoo.com");
-//		userObject.validateEmail("abc111@abc.com");
-//		userObject.validateEmail("abc-100@abc.net");
-//		userObject.validateEmail("abc.100@abc.com.au");
-//		userObject.validateEmail("abc@1.com");
-//		userObject.validateEmail("abc@gmail.com.com");
-//		userObject.validateEmail("abc+100@gmail.com");
-//		userObject.validateEmail("abc");
-//		userObject.validateEmail("abc@.com.my");
-//		userObject.validateEmail("abc123@gmail.a");
-//		userObject.validateEmail("abc123@.com");
-//		userObject.validateEmail("abc123@.com.com");
-//		userObject.validateEmail(".abc@abc.com");
-//		userObject.validateEmail("abc()*@gmail.com");
-//		userObject.validateEmail("abc@%*.com");
-//		userObject.validateEmail("abc..2002@gmail.com");
-//		userObject.validateEmail("abc.@gmail.com");
-//		userObject.validateEmail("abc@abc@gmail.com");
-//		userObject.validateEmail("abc@gmail.com.1a");
-//		userObject.validateEmail("abc@gmail.com.aa.au");   	
-         
-//    }
+import com.bridgelabz.pattern.userregistration.UserRegistrationException.UserRegistrationExceptionType;
 
+public class App {
+
+	public boolean isValidateFirstName(String firstName) throws UserRegistrationException {
+		boolean isValidFirstName = isValid(firstName, UserRegexPatterns.FIRST_NAME_PATTERN);
+		if (isValidFirstName) {
+			return isValidFirstName;
+		} else {
+			throw new UserRegistrationException(UserRegistrationExceptionType.INVALID_FIRST_NAME,
+					"Invalid First Name Entry");
+		}
+	}
+
+	public boolean isValidateLastName(String lastName) throws UserRegistrationException {
+		boolean isValidLastName = isValid(lastName, UserRegexPatterns.LAST_NAME_PATTERN);
+		if (isValidLastName) {
+			return isValidLastName;
+		} else {
+			throw new UserRegistrationException(UserRegistrationExceptionType.INVALID_LAST_NAME,
+					"Invalid Last Name Entry");
+		}
+	}
+
+	public boolean isValidateEmail(String email) throws UserRegistrationException {
+		boolean isValidEmail = isValid(email, UserRegexPatterns.EMAIL_PATTERN);
+		if (isValidEmail) {
+			return isValidEmail;
+		} else {
+			throw new UserRegistrationException(UserRegistrationExceptionType.INVALID_EMAIL, "Invalid Email Entry");
+		}
+	}
+
+	public boolean isValidatePhoneNumber(String phoneNumber) throws UserRegistrationException {
+		boolean isValidPhoneNumber = isValid(phoneNumber, UserRegexPatterns.PHONE_NUMBER_PATTERN);
+		if (isValidPhoneNumber) {
+			return isValidPhoneNumber;
+		} else {
+			throw new UserRegistrationException(UserRegistrationExceptionType.INVALID_PHONE_NUMBER,
+					"Invalid Phone Number Entry");
+		}
+	}
+
+	public boolean isValidatePassword(String password) throws UserRegistrationException {
+		boolean isvalidPassword = isValid(password, UserRegexPatterns.PASSWORD_PATTERN);
+		if (isvalidPassword) {
+			return isvalidPassword;
+		} else {
+			throw new UserRegistrationException(UserRegistrationExceptionType.INVALID_PASSWORD,
+					"Invalid Password Entry");
+		}
+	}
+
+	public boolean isValid(String input, String pattern) {
+		boolean isValid = input.matches(pattern);
+		return isValid;
+	}
 //	public String analyzeMood(String msg) {
 //		if(msg.toLowerCase().contains("happy"))
 //			return "HAPPY";
