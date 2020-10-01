@@ -1,6 +1,7 @@
 package com.bridgelabz.pattern.userregistration;
 
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import com.bridgelabz.pattern.userregistration.UserRegistrationException.UserRegistrationExceptionType;
@@ -8,7 +9,7 @@ import com.bridgelabz.pattern.userregistration.UserRegistrationException.UserReg
 public class App {
 
 	public boolean isValidateFirstName(String firstName) throws UserRegistrationException {
-		boolean isValidFirstName = isValid(firstName, UserRegexPatterns.FIRST_NAME_PATTERN);
+		boolean isValidFirstName = isValid(firstName, UserRegexPatterns.LAST_NAME_PATTERN);			
 		if (isValidFirstName) {
 			return isValidFirstName;
 		} else {
@@ -55,16 +56,13 @@ public class App {
 					"Invalid Password Entry");
 		}
 	}
-
+//LAMDA EXPRESSION OPERATION
 	public boolean isValid(String input, String pattern) {
-		boolean isValid = input.matches(pattern);
-		return isValid;
+		EntryTest isValid = (entry,regex) -> entry.matches(regex);
+		return isValid.test(input, pattern);
 	}
-//	public String analyzeMood(String msg) {
-//		if(msg.toLowerCase().contains("happy"))
-//			return "HAPPY";
-//		else if(msg.toLowerCase().contains("sad"))
-//			return "SAD";
-//		return null;		
-//	}
 }
+	
+	
+	
+
